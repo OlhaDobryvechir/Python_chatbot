@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Chatbot</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/minichat.css">
+</head>
+<body class="mini">
+  <header class="toolbar">
+    <a class="btn" href="index.html" title="Back to the Python chatbot">&#8592;</a>
+    <button id="btnClean" class="btn" title="Set all weights of the hidden layers to zero and initialise input/output words">Clean up</button>
+    <button id="btnPretrain" class="btn" title="Learn from the large set of records (140)">Pretraining</button>
+    <button id="btnTrain" class="btn" title="Learn from the small set of records (12)">Training</button>
+    <button id="btnTest" class="btn" title="Run the test set: combinations never seen before">Testing</button>
+    <button id="btnCleanLog" class="btn" title="Clear the log window">Clean log</button>
+    <span class="field-wrap">
+      <input id="userInput" class="field" type="text" placeholder="e.g. dog tired night" autocomplete="off"
+             title="Type input words: an animal, a state and a situation">
+      <!-- shown when the input loses focus: known words white, unknown words orange -->
+      <div id="userInputView" class="field-view" hidden title="Click to edit"></div>
+    </span>
+    <button id="btnProcess" class="btn btn-primary">Process</button>
+    <span id="status" class="mstatus"></span>
+    <button id="btnMenu" class="btn btn-dots" title="Math explanations" aria-haspopup="menu" aria-expanded="false">&#8942;</button>
+  </header>
+
+  <div id="dotsMenu" class="dots-menu" role="menu" hidden>
+    <button role="menuitem" data-math="pretrain">Pretraining Math</button>
+    <button role="menuitem" data-math="train">Training Math</button>
+    <button role="menuitem" data-math="test">Testing Math</button>
+    <button role="menuitem" data-action="download">Download model</button>
+    <button role="menuitem" data-action="upload">Upload model</button>
+  </div>
+  <input id="modelFile" type="file" accept=".json,application/json" hidden>
+
+  <div id="mathPopup" class="math-popup" role="dialog" aria-modal="true" aria-labelledby="mathTitle" hidden>
+    <header class="math-head">
+      <button id="mathBack" class="btn" title="Back">&#8592; Back</button>
+      <h2 id="mathTitle"></h2>
+      <button id="mathClose" class="math-x" title="Close" aria-label="Close">&times;</button>
+    </header>
+    <div id="mathBody" class="math-body"></div>
+  </div>
+
+  <main class="stage">
+    <div id="svgWrap" class="svgwrap">
+      <svg id="net" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="legend">
+        <span><i class="lg pos"></i>positive weight</span>
+        <span><i class="lg neg"></i>negative weight</span>
+        <span><i class="lg box"></i>node size = strength of incoming weights</span>
+        <span><i class="lg act"></i>active node</span>
+      </div>
+    </div>
+    <aside class="logpanel">
+      <div class="loghead">Log</div>
+      <div id="log" class="log"></div>
+    </aside>
+  </main>
+
+  <div id="tip" class="tip" hidden></div>
+
+  <script src="js/lib/math.min.js"></script>
+  <script src="js/model.js"></script>
+  <script src="js/nn.js"></script>
+  <script src="js/mathview.js"></script>
+  <script src="js/minichat.js"></script>
+</body>
+</html>

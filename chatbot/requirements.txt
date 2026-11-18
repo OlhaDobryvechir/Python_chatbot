@@ -1,0 +1,5 @@
+flask>=3.0
+huggingface_hub>=0.24
+# Prebuilt CPU wheels:
+#   pip install llama-cpp-python --prefer-binary --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+llama-cpp-python>=0.3
